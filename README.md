@@ -36,12 +36,14 @@ streamlit run src/app.py
 
 ```
 
-User Flow: 
-Insert your OPENAI API KEY in the proper input and then a MySQL connection uri in the format 
+Set Variables: 
+Insert your OPENAI API KEY in the proper input and then a MySQL connection uri with the format: 
 ```
 mysql+mysqlconnector://<MYSQL_USER>:<MYSQL_USER_PASSWORD>@<DATABASE_IP>:<DATABASE_PORT>/<MYSQL_DATABASE_NAME>
 ```
 Ex: mysql+mysqlconnector://root:mypass@localhost:3306/nicedb
+
+Start Chatting with your DATA!
 
 # Considerations
 
