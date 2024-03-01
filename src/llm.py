@@ -32,7 +32,7 @@ class MySQLAi:
         
     def full_chain(self, sql_chain, runnable_fetch_schema, runnable_sql_run_db, prompt, llm):
         return ( # This chain runs the sql_chain and the result is passed to the llm to generate natural response
-            RunnablePassthrough.assign(query=sql_chain).assign(schema=runnable_fetch_schema, response= lambda variables: runnable_sql_run_db(variables)) | prompt | llm
+            RunnablePassthrough.assign(query=sql_chain).assign(schema=runnable_fetch_schema, response=runnable_sql_run_db) | prompt | llm
         )
         
     def fetch_llm_response(self, user_query):
