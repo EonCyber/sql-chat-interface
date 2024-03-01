@@ -5,7 +5,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 import llm_templates
 
-class SQLAi:
+class MySQLAi:
     def __init__(self):
         self.llm = None
         self.db = None
@@ -30,9 +30,9 @@ class SQLAi:
             RunnablePassthrough.assign(schema=runnable) | prompt | llm.bind(stop="\nSQL Query:") | StrOutputParser()
         )
         
-    def full_chain(self, sql_chain, runnable, prompt, llm):
+    def full_chain(self, sql_chain, runnable_fetch_schema, runnable_sql_run_db, prompt, llm):
         return ( # This chain runs the sql_chain and the result is passed to the llm to generate natural response
-            RunnablePassthrough.assign(query=sql_chain).assign(schema=runnable, response= lambda variables: runnable(variables)) | prompt | llm
+            RunnablePassthrough.assign(query=sql_chain).assign(schema=runnable_fetch_schema, response= lambda variables: runnable_sql_run_db(variables)) | prompt | llm
         )
         
     def fetch_llm_response(self, user_query):
@@ -43,6 +43,6 @@ class SQLAi:
         # Lambda used as runnable to run the SQL Query against the Database
         run_sql_query_on_db = lambda query_obj: self.db.run(query_obj["query"])
         # full_chain instance to be invoked for input questions                                                       
-        full_chain = self.full_chain(sql_chain, run_sql_query_on_db, self.nat_prompt, self.llm)
+        full_chain = self.full_chain(sql_chain, fetch_schema, run_sql_query_on_db, self.nat_prompt, self.llm)
         
         return full_chain.invoke({"question": user_query})

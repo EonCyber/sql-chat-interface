@@ -35,7 +35,7 @@ class StreamlitApp:
         if self.check_keys(): 
             st.info("Por favor, insira as variáveis!")
         elif "ai" not in st.session_state:
-            st.session_state.ai = llm.SQLAi()
+            st.session_state.ai = llm.MySQLAi()
             st.session_state.ai.connect(self.api_key, self.db_uri)   
                          
     def run_chat(self):
