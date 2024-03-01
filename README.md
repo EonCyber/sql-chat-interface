@@ -1,4 +1,4 @@
-# Chat With Your SQL Database
+# Chat With Your MySQL Database
 
 This prototype creates a Streamlit Chatbot that you can use to Chat in natural language with the data from your MySql database and receive a natural language answer.
 
