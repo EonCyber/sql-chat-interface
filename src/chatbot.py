@@ -16,7 +16,7 @@ class StreamlitApp:
         self.create_chat_state()
         self.run_connections()
         self.run_chat()
-
+        
     def build_sidebar(self):
         with st.sidebar:
             st.header(self.side_header)  
