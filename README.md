@@ -52,3 +52,5 @@ This is just a prototype for study purpose, theres much tuning and handling to d
 *Feel free to reach me for any sugestions* 
 
 *The prompts and messages are in Brazillian Portuguese*
+
+*Thank you*
